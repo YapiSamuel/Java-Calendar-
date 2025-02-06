@@ -6,11 +6,10 @@ public class Deadline extends Event implements Completable {
 // Constructor
     public Deadline(String name, LocalDateTime deadline) {
         super(name, deadline);
-        completed = false;
+        this.completed = false;
     }
 
     // Implementation of the abstract getName method from the event class
-    //I've to remove this method check it out later on
     public String getName(){
         return super.name;
     }
@@ -25,6 +24,9 @@ public class Deadline extends Event implements Completable {
         return this.completed;
     }
 
+    public String toString() {
+        return "Deadline: " + name + " at " + dateTime;
+    }
 
 
 }

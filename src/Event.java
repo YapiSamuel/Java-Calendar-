@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 
 public abstract class Event implements Comparable<Event> {
     public String name;
-    private LocalDateTime dateTime;
+    protected LocalDateTime dateTime;
 
     public Event(String name, LocalDateTime dateTime) {
         this.name = name;
@@ -32,4 +32,7 @@ public abstract class Event implements Comparable<Event> {
         return dateTime.compareTo(o.getDateTime());
     }
 
+    public String toString() {
+        return name + " at " + dateTime;
+    }
 }
