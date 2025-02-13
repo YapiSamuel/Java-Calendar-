@@ -2,6 +2,7 @@
 import java.time.LocalDateTime;
 
 public abstract class Event implements Comparable<Event> {
+    //I made the string name to public instead of private
     public String name;
     protected LocalDateTime dateTime;
 
@@ -26,6 +27,8 @@ public abstract class Event implements Comparable<Event> {
     public void setName(String name) {
         this.name = name;
     }
+
+    //should add a get name method
 
     //CompareTo method to compare dates
     public int compareTo(Event o) {

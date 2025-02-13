@@ -25,7 +25,7 @@ public class Deadline extends Event implements Completable {
     }
 
     public String toString() {
-        return "Deadline: " + name + " at " + dateTime;
+        return "Deadline: " + name + "\n at " + dateTime;
     }
 
 

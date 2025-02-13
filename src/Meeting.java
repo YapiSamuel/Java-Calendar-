@@ -58,6 +58,6 @@ public class Meeting extends Event implements Completable {
     }
 
     public String toString() {
-        return "Meeting: " + name + " from " + dateTime + " to " + endDateTime + " at " + location;
+        return "Meeting: " + name + "\n from " + dateTime + " to " + endDateTime + "\n at " + location;
     }
 }
