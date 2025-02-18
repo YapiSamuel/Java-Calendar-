@@ -9,10 +9,6 @@ public class Deadline extends Event implements Completable {
         this.completed = false;
     }
 
-    // Implementation of the abstract getName method from the event class
-    public String getName(){
-        return super.name;
-    }
 
     //Implementation of complete method from completable interface
     public void complete() {
@@ -25,7 +21,7 @@ public class Deadline extends Event implements Completable {
     }
 
     public String toString() {
-        return "Deadline: " + name + "\n at " + dateTime;
+        return "Deadline: " + super.getName() + "\n at " + dateTime;
     }
 
 

@@ -7,6 +7,7 @@ public class EventPlanner {
         // Create the frame
         JFrame frame = new JFrame("Event Planner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setSize(500, 700);
 
         // Create the EventListPanel and add it to the frame

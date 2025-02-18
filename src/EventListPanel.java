@@ -17,7 +17,6 @@ public class EventListPanel extends JPanel {
 
     public EventListPanel() {
         setLayout(new BorderLayout()); // Ensures proper layout
-        setBackground(Color.YELLOW);
 
         events = new ArrayList<>();  // Initialize the event list
 
@@ -37,6 +36,7 @@ public class EventListPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateDisplay();
+
             }
         });
         controlPanel.add(filterDisplay);
@@ -59,17 +59,18 @@ public class EventListPanel extends JPanel {
         add(controlPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
     }
-
+//once you click on the add event button it will insert the info generated into event panel and refresh it
     public void addEvent(Event event) {
         events.add(event);
         displayEvent(event);
         refreshDisplay();
     }
-
+// create the template and shape for holding the text
     private void displayEvent(Event event) {
         EventPanel eventPanel = new EventPanel(event);
         displayPanel.add(eventPanel);
         displayPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Add some space between event panels
+
     }
 
     private void refreshDisplay() {
@@ -99,6 +100,7 @@ public class EventListPanel extends JPanel {
 
         events.sort(comparator);
         updateDisplay();
+
     }
 
     private void updateDisplay() {

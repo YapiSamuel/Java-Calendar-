@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 
 public abstract class Event implements Comparable<Event> {
     //I made the string name to public instead of private
-    public String name;
+    private String name;
     protected LocalDateTime dateTime;
 
     public Event(String name, LocalDateTime dateTime) {
@@ -11,7 +11,9 @@ public abstract class Event implements Comparable<Event> {
         this.dateTime = dateTime;
     }
     //Abstract method to get the name
-    public abstract String getName();
+    public String getName(){
+        return name;
+    };
 
     //Method to get the date and time
     public LocalDateTime getDateTime() {

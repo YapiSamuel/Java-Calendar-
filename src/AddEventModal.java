@@ -1,8 +1,8 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class AddEventModal extends JDialog {
     private EventListPanel parent;
@@ -44,9 +44,9 @@ public class AddEventModal extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
                 LocalDateTime date = LocalDateTime.parse(dateField.getText());
-                if (eventType.getSelectedItem().equals("Deadline")) {
+                if (Objects.equals(eventType.getSelectedItem(), "Deadline")) {
                     parent.addEvent(new Deadline(name, date));
-                } else if (eventType.getSelectedItem().equals("Meeting")) {
+                } else if (Objects.equals(eventType.getSelectedItem(), "Meeting")) {
                     LocalDateTime endDate = LocalDateTime.parse(endDateField.getText());
                     String location = locationField.getText();
                     parent.addEvent(new Meeting(name, date, endDate, location));
@@ -54,6 +54,7 @@ public class AddEventModal extends JDialog {
                 dispose();
             }
         });
-        panel.add(addButton);
+                panel.add(addButton);
+
     }
 }

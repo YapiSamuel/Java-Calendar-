@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EventPanel extends JPanel {
     private Event event;
     private JButton completeButton;
+    private JLabel statusLabel;
 
     public EventPanel(Event event) {
         this.event = event;
@@ -19,12 +22,21 @@ public class EventPanel extends JPanel {
         if (event instanceof Completable) {
             completeButton = new JButton("Complete");
             completeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            completeButton.addActionListener(e -> {
-                ((Completable) event).complete();
-                updateCompletionStatus();
+            completeButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ((Completable) event).complete();
+                    updateCompletionStatus();
+                }
             });
             add(completeButton);
         }
+
+        // Initialize status label
+        statusLabel = new JLabel("Status: Not Completed");
+        statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        statusLabel.setVisible(false);  // Initially hidden
+        add(statusLabel);
 
         // Update the completion status
         updateCompletionStatus();
@@ -51,9 +63,9 @@ public class EventPanel extends JPanel {
     private void updateCompletionStatus() {
         boolean isComplete = event instanceof Completable && ((Completable) event).isComplete();
         String statusText = isComplete ? "Completed" : "Not Completed";
-        JLabel statusLabel = new JLabel("Status: " + statusText);
-        statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(statusLabel);
+        statusLabel.setText("Status: " + statusText);
+        statusLabel.setVisible(isComplete);  // Show if completed, hide if not
+
         revalidate();
         repaint();
     }

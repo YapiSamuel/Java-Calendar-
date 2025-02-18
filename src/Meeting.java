@@ -14,12 +14,6 @@ public class Meeting extends Event implements Completable {
         this.complete = false;  // Initialize as not complete
     }
 
-    // Implementation of the abstract getName method from Event class
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
     // Implementation of complete method from Completable interface
     @Override
     public void complete() {
@@ -58,6 +52,6 @@ public class Meeting extends Event implements Completable {
     }
 
     public String toString() {
-        return "Meeting: " + name + "\n from " + dateTime + " to " + endDateTime + "\n at " + location;
+        return "Meeting: " + super.getName() + "\n from " + dateTime + " to " + endDateTime + "\n at " + location;
     }
 }
