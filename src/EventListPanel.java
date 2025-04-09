@@ -14,6 +14,8 @@ public class EventListPanel extends JPanel {
     private JComboBox<String> sortDropDown;  // Dropdown for sorting events
     private JCheckBox filterDisplay;  // Checkbox for filtering events
     private JButton addEventButton;  // Button to open AddEventModal
+    private SortStrategy sortStrategy;
+
 
     public EventListPanel() {
         setLayout(new BorderLayout()); // Ensures proper layout
@@ -79,29 +81,27 @@ public class EventListPanel extends JPanel {
     }
 
     private void sortEvents(String criteria) {
-        Comparator<Event> comparator;
-
         switch (criteria) {
             case "Name Ascending":
-                comparator = Comparator.comparing(Event::getName);
+                sortStrategy = new NameAscendingSort();
                 break;
             case "Name Descending":
-                comparator = Comparator.comparing(Event::getName).reversed();
+                sortStrategy = new NameDescendingSort();
                 break;
             case "Date Ascending":
-                comparator = Comparator.comparing(Event::getDateTime);
+                sortStrategy = new DateAscendingSort();
                 break;
             case "Date Descending":
-                comparator = Comparator.comparing(Event::getDateTime).reversed();
+                sortStrategy = new DateDescendingSort();
                 break;
             default:
                 return;
         }
 
-        events.sort(comparator);
+        sortStrategy.sort(events);
         updateDisplay();
-
     }
+
 
     private void updateDisplay() {
         displayPanel.removeAll();  // Clear the current display

@@ -44,13 +44,15 @@ public class AddEventModal extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
                 LocalDateTime date = LocalDateTime.parse(dateField.getText());
-                if (Objects.equals(eventType.getSelectedItem(), "Deadline")) {
-                    parent.addEvent(new Deadline(name, date));
-                } else if (Objects.equals(eventType.getSelectedItem(), "Meeting")) {
-                    LocalDateTime endDate = LocalDateTime.parse(endDateField.getText());
-                    String location = locationField.getText();
-                    parent.addEvent(new Meeting(name, date, endDate, location));
-                }
+                Event event = EventFactory.createEvent(
+                        (String) eventType.getSelectedItem(),
+                        name,
+                        date,
+                        LocalDateTime.parse(endDateField.getText()),
+                        locationField.getText()
+                );
+                parent.addEvent(event);
+
                 dispose();
             }
         });
